@@ -1,5 +1,13 @@
 var fs = require("fs");
-var theFile = fs.readFileSync(process.argv[2]);
-var numofLines = (theFile.toString().split('\n').length - 1);
+var theFile = process.argv[2];
 
-console.log(numofLines);
+fs.readFile(theFile, doneReading);
+
+function doneReading(error,fileContents) {
+    if(error) {
+        return console.error(error);
+    }
+    
+    var numofLines = (fileContents.toString().split('\n').length - 1);
+    console.log(numofLines);
+};
